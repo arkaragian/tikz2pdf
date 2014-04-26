@@ -16,13 +16,19 @@ def conditionTex(filename):
 	
 	outFile = open(tempName,'w')
 	
-	outFile.write('\\documentclass{standalone}')
-	outFile.write('\\usepackage{tikz}')
-	outFile.write('\\begin{document}')	
+	#Write a new line in case the original file starts with a comment
+	outFile.write('\n')
+	outFile.write('\\documentclass{standalone}\n')
+	outFile.write('\\usepackage{tikz}\n')
+	outFile.write('\\begin{document}\n')
+	outFile.write('\\begin{tikzpicture}\n')
 	for line in inFile:
 		outFile.write(line)
-	
-	outFile.write('\\end{document}')
+		
+	#Write a new line in case the original file ends with a comment
+	outFile.write('\n')
+	outFile.write('\\end{tikzpicture}\n')
+	outFile.write('\\end{document}\n')
 	
 	inFile.close()
 	outFile.close()
