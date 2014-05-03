@@ -1,8 +1,6 @@
 import sys
-import glob
 import os
-import shutil
-
+import argparse
 
 #===================
 # Function Definitions
@@ -45,12 +43,14 @@ def clean_temp_files(filename):
 # Program
 #===================
 
-if len(sys.argv) > 2:
-	print("Usage: tikz2pdf filename.tex")
-	sys.exit(0)
+parser = argparse.ArgumentParser(description='tikz2pdf: Convert a tikz source to pdf')
+#A positional argument(This should be supplied for the program to run)
+parser.add_argument('file', help='Filename to process')
+inputs  = parser.parse_args()
+#print(inputs.file)
 
-#The filename is the second argument
-file = sys.argv[1]
+#Store the input file in a variable
+file = inputs.file 
 conditionTex(file)
 
 #This command will be used. It should be in the system path
